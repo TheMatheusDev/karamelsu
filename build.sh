@@ -4,11 +4,11 @@
 # Copyright (C) 2020-2021 Adithya R.
 
 SECONDS=0 # builtin bash timer
-ZIPNAME="Karamel-$(date '+%Y%m%d-%H%M').zip"
+ZIPNAME="KaramelSU-$(date '+%Y%m%d-%H%M').zip"
 TC_DIR="/home/matheus/toolchains/clang-update-14/"
 GCC_DIR="/home/matheus/toolchains/eva-gcc/aarch64/"
 AK3_DIR="$(pwd)/android/AnyKernel3"
-DEFCONFIG="spes-perf_defconfig"
+DEFCONFIG="vendor/spes-perf_defconfig"
 
 if test -z "$(git rev-parse --show-cdup 2>/dev/null)" &&
    head=$(git rev-parse --verify HEAD 2>/dev/null); then
