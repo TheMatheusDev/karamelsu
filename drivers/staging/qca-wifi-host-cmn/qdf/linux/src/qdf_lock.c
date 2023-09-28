@@ -23,7 +23,7 @@
 
 #include <qdf_types.h>
 #include <i_host_diag_core_event.h>
-#ifdef FEATURE_RUNTIME_PM
+#ifdef CONFIG_MCL
 #include <cds_api.h>
 #include <hif.h>
 #endif
@@ -493,6 +493,10 @@ qdf_export_symbol(__qdf_runtime_lock_init);
 void qdf_runtime_lock_deinit(qdf_runtime_lock_t *lock)
 {
 	void *hif_ctx = cds_get_context(QDF_MODULE_ID_HIF);
+
+	if (!lock)
+		return;
+
 	hif_runtime_lock_deinit(hif_ctx, lock->lock);
 }
 qdf_export_symbol(qdf_runtime_lock_deinit);
@@ -734,7 +738,6 @@ void qdf_lock_stats_deinit(void)
 				  __func__, lock_cookies[i].u.cookie.func,
 				  lock_cookies[i].u.cookie.line);
 	}
-	lock_cookie_freelist = NULL;
 }
 
 /* allocated separate memory in case the lock memory is freed without
